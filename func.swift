@@ -174,3 +174,76 @@ func app_n (n: Float, a: [Float]) -> Int {
     }
     return n_count
 }
+
+// election à 4 candidats (cours)
+
+func elec_one (arr_elec : [Double]) -> String{
+    var res : String = ""
+    var pgv : Double = 0
+    
+    for i in 0 ... 3 {
+        if arr_elec[i] > pgv {
+            pgv = arr_elec[i]
+        }
+    }
+    
+    if arr_elec[0] > 0.5 {
+        res = "Le premier candidat est élu"
+    } else if arr_elec[0] > 0.125 && arr_elec[0] > 0.125 && pgv < 0.5 {
+        res = "Le premier candidat passe au second tour"
+        if arr_elec[0] == pgv {
+            res += "en ballotage favorable"
+        } else {
+            res += "en ballotage défavorable"
+        }
+    } else if pgv > 0.5 && arr_elec[0] < 0.5 || arr_elec[0] < 0.125 {
+        res = "Le candidat est éliminé"
+    }
+    return res
+}
+
+// variante nb de candidat ilimité
+
+func elec_two (arr_elec : [Double]) -> String {
+    var res : String = ""
+    var pgv : Double = 0
+    
+    for i in 0 ... arr_elec.count - 1 {
+        if arr_elec[i] > pgv {
+            pgv = arr_elec[i]
+        }
+    }
+    
+    if arr_elec[0] > 0.5 {
+        res = "Le premier candidat est élu"
+    } else if arr_elec[0] > 0.125 && arr_elec[0] > 0.125 && pgv < 0.5 {
+        res = "Le premier candidat passe au second tour"
+        if arr_elec[0] == pgv {
+            res += "en ballotage favorable"
+        } else {
+            res += "en ballotage défavorable"
+        }
+    } else if pgv > 0.5 && arr_elec[0] < 0.5 || arr_elec[0] < 0.125 {
+        res = "Le candidat est éliminé"
+    }
+    return res
+}
+
+// Validité de carte banquaire
+
+func cbValidity (arr_cb : [Int]) -> Bool {
+    var estValide : Bool = false
+    var sum : Int = 0
+    var tab : [Int] = arr_cb
+    
+    for i in 0 ... 15 {
+        if i % 2 == 0 {
+            tab[i] *= 2
+        }
+        sum += tab[i]
+    }
+    if sum % 10 == 0 {
+        estValide = false
+    }
+    return estValide
+}
