@@ -239,11 +239,14 @@ func cbValidity (arr_cb : [Int]) -> Bool {
     for i in 0 ... 15 {
         if i % 2 == 0 {
             tab[i] *= 2
+            if tab[i] > 9 {
+                tab[i] -= 9
+            }
         }
         sum += tab[i]
     }
     if sum % 10 == 0 {
-        estValide = false
+        estValide = true
     }
     return estValide
 }
