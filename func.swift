@@ -250,3 +250,29 @@ func cbValidity (arr_cb : [Int]) -> Bool {
     }
     return estValide
 }
+  
+// Décompose un nombre selon ses chiffres dans un tableau
+
+func décomposition_table (num: Int) -> [Int] {
+    var n : Int = num
+    var i : Int = 1
+    var j : Int = 0
+    var tab : [Int] = []
+    
+    while num/i > 1 {
+        i *= 10
+    }
+    i = i/10
+    func intPart (n : Float) -> Int {
+        var a : [Substring] = String(n).split(separator: ".")
+        return Int(a[0])!
+    }
+    
+    while n > 0 {
+        tab.append(intPart(n: Float(n/i)))
+        n = n - i * tab[j]
+        i = i/10
+        j += 1
+    }
+    return tab
+}
